@@ -39,72 +39,81 @@
 ****************************************************************************/
 
 /* 																										 */
-/* File is originally from https://github.com/qtproject/qt-solutions/tree/master/qtwinmigrate/src        */
+/* File is originally from
+ * https://github.com/qtproject/qt-solutions/tree/master/qtwinmigrate/src */
 /* 																										 */
-/* It has been modified to support borderless window (HTTTRANSPARENT) & to remove pre Qt5 cruft          */
+/* It has been modified to support borderless window (HTTTRANSPARENT) & to
+ * remove pre Qt5 cruft          */
+/* Code updated to match Xenia's code style better
+ */
 /* 																										 */
-/* 																										 */
-
 
 // Declaration of the QWinWidget classes
 
 #ifndef QWINWIDGET_H
 #define QWINWIDGET_H
 
-#include <QWidget>
 #include <QVBoxLayout>
+#include <QWidget>
 
-#include "widget.h"
-#include "WinNativeWindow.h"
+#include "../main_widget.h"
+#include "native_window_win.h"
 
-class QWinWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    QWinWidget();
-    ~QWinWidget();
+class WinNativeWidget : public QWidget {
+  Q_OBJECT
 
-    void show();
-    void center();
-    void showCentered();
-    void setGeometry(int x, int y, int w, int h);
+ public:
+  WinNativeWidget();
+  ~WinNativeWidget();
 
-    HWND getParentWindow() const;
+  void showEvent(QShowEvent *e) override;
+  /**
+   * soft override of QWidget::setGeometry
+   * @param x
+   * @param y
+   * @param w
+   * @param h
+   */
+  void setGeometry(int x, int y, int w, int h);
 
-public slots:
-    void onMaximizeButtonClicked();
-    void onMinimizeButtonClicked();
-    void onCloseButtonClicked();
+  void Center();
+  void ShowCentered();
 
-protected:
-    void childEvent( QChildEvent *e ) override;
-    bool eventFilter( QObject *o, QEvent *e ) override;
+  HWND GetParentWindow() const;
 
-    bool focusNextPrevChild(bool next) override;
-    void focusInEvent(QFocusEvent *e) override;
+ public slots:
+  void OnMaximizeButtonClicked();
+  void OnMinimizeButtonClicked();
+  void OnCloseButtonClicked();
 
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
+ protected:
+  void childEvent(QChildEvent *e) override;
+  bool eventFilter(QObject *o, QEvent *e) override;
 
+  bool focusNextPrevChild(bool next) override;
+  void focusInEvent(QFocusEvent *e) override;
 
-private:
-    QVBoxLayout m_Layout;
+  bool nativeEvent(const QByteArray &eventType, void *message,
+                   long *result) override;
 
-    Widget* p_Widget;
+ private:
+  QVBoxLayout layout_;
 
-    WinNativeWindow* p_ParentWinNativeWindow;
-    HWND m_ParentNativeWindowHandle;
+  MainWidget *widget_;
 
-    HWND _prevFocus;
-    bool _reenableParent;
+  WinNativeWindow *parent_window_;
+  HWND parent_window_handle_;  // should just add a getter to WinNativeWindow?
 
-    int BORDERWIDTH = 6;		//Adjust this as you wish for # of pixels on the edges to show resize handles
-    int TOOLBARHEIGHT = 40; //Adjust this as you wish for # of pixels from the top to allow dragging the window
+  HWND prev_focus_;
+  bool reenable_parent_;
 
-    void saveFocus();
-    void resetFocus();
+  int border_width_;    // Adjust this as you wish for # of pixels on the
+                        // edges to show resize handles
+  int toolbar_height_;  // Adjust this as you wish for # of pixels
+                        // from the top to allow dragging the window
 
-
-
+  void SaveFocus();
+  void ResetFocus();
 };
 
-#endif // QWINWIDGET_H
+#endif  // QWINWIDGET_H

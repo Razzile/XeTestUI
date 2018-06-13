@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/background.png</file>
+        <file>res/close-button1.png</file>
+        <file>res/close-button2.png</file>
+        <file>res/maximize-button1.png</file>
+        <file>res/maximize-button2.png</file>
+        <file>res/minimize-button1.png</file>
+        <file>res/close.svg</file>
+        <file>res/maximize.svg</file>
+        <file>res/minimize.svg</file>
+        <file>window.css</file>
+        <file>res/16x16.png</file>
+        <file>res/32x32.png</file>
+        <file>res/36x36.png</file>
+        <file>res/37x37.png</file>
+        <file>res/48x48.png</file>
+        <file>res/64x64.png</file>
+        <file>res/256x256.png</file>
+        <file>res/512x512.png</file>
+        <file>res/icon.ico</file>
+    </qresource>
+</RCC>
