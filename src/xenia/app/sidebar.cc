@@ -34,7 +34,10 @@ Sidebar::Sidebar(int width, QWidget *parent) : QWidget(parent), width_(width) {
   sidebar_title_layout->setSpacing(0);
   sidebar_header_layout->addLayout(sidebar_title_layout);
 
+  QFont header_font("Segoe UI", 18, QFont::Bold);
+
   QLabel *xenia_header = new QLabel("Xenia");
+  xenia_header->setFont(header_font);
   xenia_header->setStyleSheet("color: white");
   sidebar_title_layout->addWidget(xenia_header, 0, Qt::AlignTop);
 
