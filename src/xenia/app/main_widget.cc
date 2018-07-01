@@ -7,6 +7,7 @@
 #include <QStyle>
 #include <QUrl>
 
+#include "sidebar.h"
 #include "theme_manager.h"
 
 MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
@@ -138,6 +139,15 @@ MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
 
   menu_toolbar->layout()->setMenuBar(menubar);
   addToolBar(menu_toolbar);
+
+  QWidget* central_widget = new QWidget();
+  this->setCentralWidget(central_widget);
+
+  QVBoxLayout* layout = new QVBoxLayout();
+  this->centralWidget()->setLayout(layout);
+
+  Sidebar* sidebar = new Sidebar();
+  layout->addWidget(sidebar);
 }
 
 void MainWidget::paintEvent(QPaintEvent* event) {

@@ -12,9 +12,11 @@ TARGET = XeTestUI
 TEMPLATE = app
 CONFIG += app_bundle
 
-SOURCES += $$files(src/xenia/app/*.cc, false)
+SOURCES += $$files(src/xenia/app/*.cc, false) \
+    src/xenia/app/sidebar.cc
 
-HEADERS  += $$files(src/xenia/app/*.h, false)
+HEADERS  += $$files(src/xenia/app/*.h, false) \
+    src/xenia/app/sidebar.h
 
 win32 {
     # Only include / compile these files on Windows
