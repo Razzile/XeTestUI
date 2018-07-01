@@ -1,5 +1,5 @@
 #include <QApplication>
-
+#include <QFontDatabase>
 #ifdef _WIN32
 #include "win/native_widget_win.h"
 #else
@@ -17,6 +17,8 @@ int main(int argc, char *argv[]) {
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
   QApplication app(argc, argv);
+
+  QFontDatabase::addApplicationFont(":/res/ionicons.ttf");
 
   // A common feature is to save your app's geometry on close such that you can
   // draw in the same place on relaunch Thus this project supports specifying

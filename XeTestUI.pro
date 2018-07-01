@@ -18,6 +18,8 @@ SOURCES += $$files(src/xenia/app/*.cc, false) \
 HEADERS  += $$files(src/xenia/app/*.h, false) \
     src/xenia/app/sidebar.h
 
+INCLUDEPATH += third_party/IconFontCppHeaders
+
 win32 {
     # Only include / compile these files on Windows
     SOURCES += $$files(src/xenia/app/win/*.cc, true)
