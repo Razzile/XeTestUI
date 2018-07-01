@@ -19,5 +19,6 @@
         <file>res/256x256.png</file>
         <file>res/512x512.png</file>
         <file>res/icon.ico</file>
+        <file>res/ionicons.ttf</file>
     </qresource>
 </RCC>
