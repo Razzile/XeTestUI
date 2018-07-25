@@ -143,11 +143,15 @@ MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
   QWidget* central_widget = new QWidget();
   this->setCentralWidget(central_widget);
 
-  QVBoxLayout* layout = new QVBoxLayout();
+  QHBoxLayout* layout = new QHBoxLayout();
   this->centralWidget()->setLayout(layout);
 
   Sidebar* sidebar = new Sidebar();
-  layout->addWidget(sidebar);
+  layout->addWidget(sidebar, 0, Qt::AlignLeft);
+
+  QWidget* test_content = new QWidget();
+  test_content->setStyleSheet("background: rgb(40,40,40)");
+  layout->addWidget(test_content, 1);
 }
 
 void MainWidget::paintEvent(QPaintEvent* event) {
