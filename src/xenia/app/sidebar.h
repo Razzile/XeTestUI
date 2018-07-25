@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-const static int SIDEBAR_DEFAULT_WIDTH = 200;
+const static int SIDEBAR_DEFAULT_WIDTH = 80;
 
 class Sidebar : public QWidget {
  public:
