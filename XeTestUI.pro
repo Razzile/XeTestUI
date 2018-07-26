@@ -13,10 +13,12 @@ TEMPLATE = app
 CONFIG += app_bundle
 
 SOURCES += $$files(src/xenia/app/*.cc, false) \
-    src/xenia/app/sidebar.cc
+    src/xenia/app/sidebar.cc \
+    src/xenia/app/xewidget.cc
 
 HEADERS  += $$files(src/xenia/app/*.h, false) \
-    src/xenia/app/sidebar.h
+    src/xenia/app/sidebar.h \
+    src/xenia/app/xewidget.h
 
 INCLUDEPATH += third_party/IconFontCppHeaders
 
