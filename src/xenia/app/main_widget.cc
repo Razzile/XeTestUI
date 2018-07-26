@@ -51,6 +51,7 @@ MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
   this->setCentralWidget(central_widget);
 
   QHBoxLayout* layout = new QHBoxLayout();
+  layout->setContentsMargins(0, 0, 0, 0);
   this->centralWidget()->setLayout(layout);
 
   Sidebar* sidebar = new Sidebar();
