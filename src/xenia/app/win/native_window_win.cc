@@ -9,9 +9,9 @@ WinNativeWindow::WinNativeWindow(LPCWSTR title, const int x, const int y,
     : window_handle_(nullptr),
       child_widget_(nullptr),
       child_window_handle_(nullptr) {
-  Theme theme = ThemeManager::SharedManager().theme();
+  //  Theme theme = ThemeManager::SharedManager().theme();
 
-  HBRUSH windowBackground = CreateSolidBrush(theme["background"].rgb());
+  //  HBRUSH windowBackground = CreateSolidBrush(theme["background"].rgb());
 
   HINSTANCE hInstance = GetModuleHandle(nullptr);
   WNDCLASSEX wcx = {0};
@@ -23,7 +23,7 @@ WinNativeWindow::WinNativeWindow(LPCWSTR title, const int x, const int y,
   wcx.cbClsExtra = 0;
   wcx.cbWndExtra = 0;
   wcx.lpszClassName = L"WindowClass";
-  wcx.hbrBackground = windowBackground;
+  //  wcx.hbrBackground = windowBackground;
   wcx.hCursor = LoadCursor(hInstance, IDC_ARROW);
 
   RegisterClassEx(&wcx);

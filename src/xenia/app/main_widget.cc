@@ -16,10 +16,10 @@ MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
   QIcon app_icon(":/res/icon.ico");
   setWindowIcon(app_icon);
 
-  Theme theme = ThemeManager::SharedManager().theme();
+  // Theme theme = ThemeManager::SharedManager().theme();
 
   QPalette Pal(palette());
-  Pal.setColor(QPalette::Background, theme["background"]);
+  //  Pal.setColor(QPalette::Background, theme["background"]);
   setAutoFillBackground(true);
   setPalette(Pal);
 
@@ -29,7 +29,7 @@ MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
   menu_toolbar->setStyleSheet("background-color: none; border: none;");
 
   QMenuBar* menubar = new QMenuBar();
-  menubar->setStyleSheet(QString("color:%1;").arg(theme["text"].name()));
+  //  menubar->setStyleSheet(QString("color:%1;").arg(theme["text"].name()));
   QMenu* file_menu = new QMenu("File");
   menubar->addMenu(file_menu);
   QMenu* cpu_menu = new QMenu("CPU");

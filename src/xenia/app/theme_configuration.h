@@ -6,11 +6,15 @@
 
 class ThemeConfiguration {
  public:
-  ThemeConfiguration(const QString &config_file);
-
   static std::unique_ptr<ThemeConfiguration> FromFile(const QString &file);
 
  private:
+  ThemeConfiguration();
+  ThemeConfiguration(QString name, QString desc);
+
+  void set_name(const QString &name);
+  void set_description(const QString &desc);
+
   QString name_;
   QString description_:
 };

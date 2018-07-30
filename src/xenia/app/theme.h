@@ -4,11 +4,7 @@
 #include <QString>
 #include <QVector>
 
-enum ThemeErr {
-  THEME_LOAD_OK = 0,
-  THEME_NOT_FOUND,
-  THEME_MISCONFIGURED
-}
+enum ThemeRes { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
 
 class Theme {
   using ThemeColor = std::pair<QString, QColor>;
@@ -16,7 +12,7 @@ class Theme {
  public:
   Theme(const QString &directory);
 
-  ThemeErr LoadTheme();
+  ThemeRes LoadTheme();
 
   const QVector<ThemeColor> colors() const { return colors_; }
   QColor *ColorForKey(const QString &key);

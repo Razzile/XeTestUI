@@ -1,5 +1,8 @@
 #include <QApplication>
 #include <QFontDatabase>
+
+#include "theme_manager.h"
+
 #ifdef _WIN32
 #include "win/native_widget_win.h"
 #else
@@ -11,6 +14,8 @@ int main(int argc, char *argv[]) {
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
   QApplication app(argc, argv);
+
+  ThemeManager manager = ThemeManager::SharedManager();
 
   QFontDatabase::addApplicationFont(":/res/ionicons.ttf");
 
