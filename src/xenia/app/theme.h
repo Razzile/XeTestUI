@@ -3,22 +3,23 @@
 
 #include <QString>
 #include <QVector>
+#include "theme_configuration.h"
 
 enum ThemeRes { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
 
 class Theme {
-  using ThemeColor = std::pair<QString, QColor>;
-
  public:
-  Theme(const QString &directory);
+  Theme() = default;
+  Theme(const QString &directory) : directory_(directory) {}
+  Theme(const ThemeConfiguration &config) : config_(config) {}
 
   ThemeRes LoadTheme();
 
-  const QVector<ThemeColor> colors() const { return colors_; }
-  QColor *ColorForKey(const QString &key);
+  const QString &directory() const { return directory_; }
+  const ThemeConfiguration &config() const { return config_; }
 
  private:
   QString directory_;
-  QVector<ThemeColor> colors_;
+  ThemeConfiguration config_;
 };
 #endif  // THEME_H
