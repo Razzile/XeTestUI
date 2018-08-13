@@ -26,6 +26,9 @@ class ThemeConfiguration {
   bool SaveToFile();
   bool SaveToFile(const QString &file);
 
+  const QString &name() const { return name_; }
+  const QString &description() const { return description_; }
+
   void set_name(const QString &name) { name_ = name; }
   void set_description(const QString &desc) { description_ = desc; }
 

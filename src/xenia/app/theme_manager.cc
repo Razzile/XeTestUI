@@ -19,6 +19,8 @@ void ThemeManager::LoadThemes() {
   QDirIterator iter(theme_dir, QDir::Dirs | QDir::NoDotAndDotDot);
 
   while (iter.hasNext()) {
-    themes_.push_back(Theme(iter.next()));
+    Theme t(iter.next());
+    t.LoadTheme();
+    themes_.push_back(t);
   }
 }
