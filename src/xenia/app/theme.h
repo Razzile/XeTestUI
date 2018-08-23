@@ -7,6 +7,18 @@
 
 enum ThemeRes { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
 
+/**
+ * Represents a theme for xenia.
+ *
+ * On the FS a theme consists of a folder containing a
+ * theme.json config file, and an optional sub-folder
+ * called stylesheets containing QSS files.
+ *
+ * These QSS stylesheets support macros unlike default Qt
+ * and have the format `$macro`.
+ *
+ * Macro values are defined in the config file.
+ */
 class Theme {
  public:
   Theme() = default;
