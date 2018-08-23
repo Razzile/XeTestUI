@@ -1,5 +1,11 @@
-#include "main_widget.h"
-
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #include <QApplication>
 #include <QLabel>
 #include <QLayout>
@@ -7,8 +13,12 @@
 #include <QStyle>
 #include <QUrl>
 
+#include "main_widget.h"
 #include "sidebar.h"
 #include "theme_manager.h"
+
+namespace xe {
+namespace app {
 
 MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
   window_title_ = "Xenia";  // move to qwinwidget maybe?
@@ -67,3 +77,6 @@ void MainWidget::paintEvent(QPaintEvent* event) {
   //  QImage backgroundImage(QStringLiteral(":/res/background.png"));
   //  painter.drawImage(contentsRect(), backgroundImage);
 }
+
+}  // namespace app
+}  // namespace xe

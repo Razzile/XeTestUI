@@ -99,7 +99,7 @@ class WinNativeWidget : public QWidget {
  private:
   QVBoxLayout layout_;
 
-  MainWidget *widget_;
+  xe::app::MainWidget *widget_;
 
   WinNativeWindow *parent_window_;
   HWND parent_window_handle_;  // should just add a getter to WinNativeWindow?

@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #ifndef THEMEMANAGER_H
 #define THEMEMANAGER_H
 
@@ -5,6 +13,10 @@
 #include <QString>
 #include <QVector>
 #include "theme.h"
+
+namespace xe {
+namespace app {
+
 class ThemeManager {
  public:
   static ThemeManager& SharedManager();
@@ -19,4 +31,6 @@ class ThemeManager {
   QVector<Theme> themes_;
 };
 
+}  // namespace app
+}  // namespace xe
 #endif  // THEMEMANAGER_H

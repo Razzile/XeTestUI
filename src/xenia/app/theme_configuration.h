@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #ifndef THEME_CONFIGURATION_H
 #define THEME_CONFIGURATION_H
 
@@ -7,6 +15,8 @@
 #include <memory>
 #include <vector>
 
+namespace xe {
+namespace app {
 using ThemeColor = std::pair<QString, QColor>;
 
 class ThemeConfiguration {
@@ -47,4 +57,6 @@ class ThemeConfiguration {
   std::vector<ThemeColor> colors_;
 };
 
+}  // namespace app
+}  // namespace xe
 #endif  // THEME_CONFIGURATION_H

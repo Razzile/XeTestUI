@@ -1,9 +1,20 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #ifndef THEME_H
 #define THEME_H
 
 #include <QString>
 #include <QVector>
 #include "theme_configuration.h"
+
+namespace xe {
+namespace app {
 
 enum ThemeRes { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
 
@@ -34,4 +45,8 @@ class Theme {
   QString directory_;
   ThemeConfiguration config_;
 };
+
+}  // namespace app
+}  // namespace xe
+
 #endif  // THEME_H

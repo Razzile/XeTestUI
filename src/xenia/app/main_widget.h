@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #ifndef WIDGET_H
 #define WIDGET_H
 
@@ -5,6 +13,9 @@
 #include <QPainter>
 #include <QPushButton>
 #include <QToolBar>
+
+namespace xe {
+namespace app {
 
 class MainWidget : public QMainWindow {
   Q_OBJECT
@@ -38,5 +49,8 @@ class MainWidget : public QMainWindow {
 
  public slots:
 };
+
+}  // namespace app
+}  // namespace xe
 
 #endif  // WIDGET_H

@@ -1,10 +1,21 @@
-#include "theme_configuration.h"
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
 #include <QtDebug>
+#include "theme_configuration.h"
+
+namespace xe {
+namespace app {
 
 bool ThemeConfiguration::LoadFromFile() { return LoadFromFile(file_); }
 
@@ -136,3 +147,6 @@ void ThemeConfiguration::add_color(const QString &name, int r, int g, int b,
                                    int a) {
   return add_color(name, QColor(r, g, b, a));
 }
+
+}  // namespace app
+}  // namespace xe
