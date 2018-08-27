@@ -16,7 +16,7 @@ namespace xe {
 namespace app {
 
 Sidebar::Sidebar(int width, QWidget *parent)
-    : ThemeableWidget("Sidebar", parent), width_(width) {
+    : Themeable<QWidget>("Sidebar", parent), width_(width) {
   layout_ = new QVBoxLayout();
   layout_->setSpacing(0);
   layout_->setMargin(0);

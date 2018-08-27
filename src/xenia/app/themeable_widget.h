@@ -9,22 +9,48 @@
 #ifndef XEWIDGET_H
 #define XEWIDGET_H
 
+#include <QMainWindow>
+#include <QPainter>
+#include <QStyleOption>
 #include <QWidget>
+#include "theme_manager.h"
 
 namespace xe {
 namespace app {
 
-// TODO: this class may not be needed as
-// QApplication::setStylesheet() can set global styles
-class ThemeableWidget : public QWidget {
-  Q_OBJECT
+/**
+ * Inherit from this class to automatically theme
+ */
+template <typename T>
+class Themeable : public T {
  public:
-  explicit ThemeableWidget(const QString &widget_name = "",
-                           QWidget *parent = nullptr);
-  void paintEvent(QPaintEvent *) override;
- signals:
+  Themeable(QString name = "", QWidget *parent = nullptr) : T(parent) {
+    static_assert(std::is_base_of<QObject, T>::value,
+                  "T not derived from QObject");
+    if (name == QString::null) {
+      name = typeid(T).name();
+    }
+    ApplyTheme(name);
+  }
+  void ApplyTheme(const QString &name) {
+    if (name != QString::null) {
+      setObjectName(name);
+    }
 
- public slots:
+    Theme theme = ThemeManager::SharedManager().current_theme();
+    QString style = theme.StylesheetForComponent(name);
+
+    if (style != QString::null) {
+      setStyleSheet(style);
+    }
+  }
+
+  void paintEvent(QPaintEvent *) override {
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+  }
 };
 
 }  // namespace app

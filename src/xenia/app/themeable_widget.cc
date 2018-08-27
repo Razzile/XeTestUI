@@ -7,32 +7,51 @@
  ******************************************************************************
  */
 #include "themeable_widget.h"
-#include <QPainter>
-#include <QStyleOption>
-#include "theme_manager.h"
+
 namespace xe {
 namespace app {
 
-ThemeableWidget::ThemeableWidget(const QString &name, QWidget *parent)
-    : QWidget(parent) {
-  if (name != QString::null) {
-    setObjectName(name);
-  }
+// template <>
+// void Themeable<QWidget>::ApplyTheme(const QString &name) {
+//  if (name != QString::null) {
+//    setObjectName(name);
+//  }
 
-  Theme theme = ThemeManager::SharedManager().current_theme();
-  QString style = theme.StylesheetForComponent(objectName());
+//  Theme theme = ThemeManager::SharedManager().current_theme();
+//  QString style = theme.StylesheetForComponent(name);
 
-  if (style != QString::null) {
-    setStyleSheet(style);
-  }
-}
+//  if (style != QString::null) {
+//    setStyleSheet(style);
+//  }
+//}
 
-void ThemeableWidget::paintEvent(QPaintEvent *) {
-  QStyleOption opt;
-  opt.init(this);
-  QPainter p(this);
-  style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
+// template <>
+// Themeable<QWidget>::Themeable(const QString &name, QWidget *parent)
+//    : QWidget(parent) {
+//  ApplyTheme(name);
+//}
+
+// template <>
+// void Themeable<QWidget>::paintEvent(QPaintEvent *) {
+//  QStyleOption opt;
+//  opt.init(this);
+//  QPainter p(this);
+//  style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+//}
+
+// template <>
+// Themeable<QMainWindow>::Themeable(const QString &name, QWidget *parent)
+//    : QMainWindow(parent) {
+//  reinterpret_cast<Themeable<QWidget> *>(this)->ApplyTheme(name);
+//}
+
+// template <>
+// void Themeable<QMainWindow>::paintEvent(QPaintEvent *) {
+//  QStyleOption opt;
+//  opt.init(this);
+//  QPainter p(this);
+//  style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+//}
 
 }  // namespace app
 }  // namespace xe

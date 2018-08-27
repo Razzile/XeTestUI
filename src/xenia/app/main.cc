@@ -1,13 +1,9 @@
 #include <QApplication>
+#include <QDebug>
 #include <QFontDatabase>
 
+#include "main_window.h"
 #include "theme_manager.h"
-
-#ifdef _WIN32
-#include "win/native_widget_win.h"
-#else
-#include "main_widget.h"
-#endif
 
 int main(int argc, char *argv[]) {
   QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -15,22 +11,21 @@ int main(int argc, char *argv[]) {
 
   QApplication app(argc, argv);
 
-  ThemeManager manager = ThemeManager::SharedManager();
+  auto &manager = xe::app::ThemeManager::SharedManager();
+
+  auto &themes = manager.themes();
+  for (auto &theme : themes) {
+    qDebug() << theme.directory();
+
+    auto &config = theme.config();
+
+    qDebug() << config.name() << " " << config.description();
+  }
 
   QFontDatabase::addApplicationFont(":/res/ionicons.ttf");
 
-  // A common feature is to save your app's geometry on close such that you can
-  // draw in the same place on relaunch Thus this project supports specifying
-  // the X/Y/Width/Height in a cross-platform manner
-  int windowXPos, windowYPos, windowWidth, windowHeight;
-  windowXPos = 100;
-  windowYPos = 100;
-  windowWidth = 1280;
-  windowHeight = 720;
-
-  MainWidget w;
-
-  w.setGeometry(windowXPos, windowYPos, windowWidth, windowHeight);
+  xe::app::MainWindow w;
+  w.setGeometry(100, 100, 640, 360);
   w.show();
 
   return app.exec();

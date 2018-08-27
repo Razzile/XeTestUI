@@ -6,30 +6,33 @@
  * Released under the BSD license - see LICENSE in the root for more details. *
  ******************************************************************************
  */
-#ifndef SIDEBAR_H
-#define SIDEBAR_H
 
-#include <QAction>
-#include <QToolButton>
-#include <QVBoxLayout>
-#include <QWidget>
+#ifndef MAIN_WINDOW_H
+#define MAIN_WINDOW_H
+
+#include <QMainWindow>
+#include <QPushButton>
 #include "themeable_widget.h"
 
 namespace xe {
 namespace app {
 
-const static int SIDEBAR_DEFAULT_WIDTH = 80;
-
-class Sidebar : public Themeable<QWidget> {
+class MainWindow : public Themeable<QMainWindow> {
+  Q_OBJECT
  public:
-  Sidebar(int width = SIDEBAR_DEFAULT_WIDTH, QWidget *parent = nullptr);
+  explicit MainWindow(QWidget* parent = nullptr);
+
+  QString window_title() const { return window_title_; }
 
  private:
-  QVBoxLayout *layout_;
-  int width_;
+  QString window_title_;
+
+ signals:
+
+ public slots:
 };
 
 }  // namespace app
 }  // namespace xe
 
-#endif  // SIDEBAR_H
+#endif  // MAIN_WINDOW_H
