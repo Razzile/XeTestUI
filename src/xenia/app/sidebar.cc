@@ -15,13 +15,14 @@
 namespace xe {
 namespace app {
 
-Sidebar::Sidebar(int width, QWidget *parent) : QWidget(parent), width_(width) {
+Sidebar::Sidebar(int width, QWidget *parent)
+    : ThemeableWidget("Sidebar", parent), width_(width) {
   layout_ = new QVBoxLayout();
   layout_->setSpacing(0);
   layout_->setMargin(0);
   setLayout(layout_);
 
-  // setStyleSheet("background-color: black");
+  // setStyleSheet("QWidget#Sidebar {background-color: red;}");
 
   setMinimumWidth(width_);
   setMaximumWidth(width_);

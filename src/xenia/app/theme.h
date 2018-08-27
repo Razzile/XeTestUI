@@ -9,6 +9,7 @@
 #ifndef THEME_H
 #define THEME_H
 
+#include <QMap>
 #include <QString>
 #include <QVector>
 #include "theme_configuration.h"
@@ -16,7 +17,11 @@
 namespace xe {
 namespace app {
 
-enum ThemeRes { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
+enum ThemeStatus { THEME_LOAD_OK = 0, THEME_NOT_FOUND, THEME_MISCONFIGURED };
+
+// Stylemap is in the format: {target, stylesheet}
+// where target is component and stylesheet is qss for component
+using StyleMap = QMap<QString, QString>;
 
 /**
  * Represents a theme for xenia.
@@ -36,14 +41,18 @@ class Theme {
   Theme(const QString &directory) : directory_(directory) {}
   Theme(const ThemeConfiguration &config) : config_(config) {}
 
-  ThemeRes LoadTheme();
+  ThemeStatus LoadTheme();
+  QString StylesheetForComponent(const QString &compoment);
 
   const QString &directory() const { return directory_; }
   const ThemeConfiguration &config() const { return config_; }
 
  private:
+  QString PreprocessStylesheet(QString style);
+
   QString directory_;
   ThemeConfiguration config_;
+  StyleMap styles_;
 };
 
 }  // namespace app

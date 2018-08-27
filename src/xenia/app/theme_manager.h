@@ -20,7 +20,7 @@ namespace app {
 class ThemeManager {
  public:
   static ThemeManager& SharedManager();
-
+  const Theme& current_theme() const { return themes_.front(); }
   const QVector<Theme>& themes() const { return themes_; }
 
  private:

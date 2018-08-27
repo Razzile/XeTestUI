@@ -14,11 +14,14 @@
 namespace xe {
 namespace app {
 
+// TODO: this class may not be needed as
+// QApplication::setStylesheet() can set global styles
 class ThemeableWidget : public QWidget {
   Q_OBJECT
  public:
-  explicit ThemeableWidget(QWidget *parent = nullptr);
-
+  explicit ThemeableWidget(const QString &widget_name = "",
+                           QWidget *parent = nullptr);
+  void paintEvent(QPaintEvent *) override;
  signals:
 
  public slots:

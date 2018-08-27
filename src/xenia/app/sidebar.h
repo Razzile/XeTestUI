@@ -13,13 +13,14 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "themeable_widget.h"
 
 namespace xe {
 namespace app {
 
 const static int SIDEBAR_DEFAULT_WIDTH = 80;
 
-class Sidebar : public QWidget {
+class Sidebar : public ThemeableWidget {
  public:
   Sidebar(int width = SIDEBAR_DEFAULT_WIDTH, QWidget *parent = nullptr);
 
