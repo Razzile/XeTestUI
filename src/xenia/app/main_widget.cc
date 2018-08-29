@@ -14,6 +14,7 @@
 #include <QUrl>
 
 #include "main_widget.h"
+#include "main_window.h"
 #include "sidebar.h"
 #include "theme_manager.h"
 
@@ -22,6 +23,8 @@ namespace app {
 
 MainWidget::MainWidget(QWidget* parent)
     : Themeable<QWidget>("MainWidget", parent) {
+  window_ = static_cast<MainWindow*>(parent);
+
   QHBoxLayout* layout = new QHBoxLayout();
   layout->setContentsMargins(0, 0, 0, 0);
   setLayout(layout);
@@ -33,6 +36,22 @@ MainWidget::MainWidget(QWidget* parent)
   test_content->setObjectName("test");
   test_content->setStyleSheet("background: rgb(40,40,40)");
   layout->addWidget(test_content, 1);
+}
+
+void MainWidget::keyPressEvent(QKeyEvent* e) {
+  if (e->key() == Qt::Key_Alt) {
+    if (window_) {
+      window_->menuBar()->show();
+    }
+  }
+}
+
+void MainWidget::keyReleaseEvent(QKeyEvent* e) {
+  if (e->key() == Qt::Key_Alt) {
+    if (window_) {
+      window_->menuBar()->hide();
+    }
+  }
 }
 
 }  // namespace app

@@ -32,11 +32,12 @@ MainWindow::MainWindow(QWidget* parent)
   menubar->addMenu(window_menu);
   QMenu* help_menu = new QMenu("Help");
   menubar->addMenu(help_menu);
+  menubar->setHidden(true);
 
   file_menu->addAction("Save");
   file_menu->addAction("Exit");
 
-  MainWidget* central_widget = new MainWidget();
+  MainWidget* central_widget = new MainWidget(this);
   this->setCentralWidget(central_widget);
 }
 

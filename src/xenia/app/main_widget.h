@@ -9,6 +9,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include <QKeyEvent>
 #include <QMainWindow>
 #include <QPainter>
 #include <QPushButton>
@@ -18,10 +19,19 @@
 namespace xe {
 namespace app {
 
+class MainWindow;
+
 class MainWidget : public Themeable<QWidget> {
   Q_OBJECT
  public:
-  explicit MainWidget(QWidget* parent = 0);
+  explicit MainWidget(QWidget *parent = nullptr);
+
+ protected:
+  void keyPressEvent(QKeyEvent *e) override;
+  void keyReleaseEvent(QKeyEvent *e) override;
+
+ private:
+  MainWindow *window_;
 
  signals:
 
