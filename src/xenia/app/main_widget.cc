@@ -1,5 +1,11 @@
-#include "main_widget.h"
-
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #include <QApplication>
 #include <QLabel>
 #include <QLayout>
@@ -7,63 +13,46 @@
 #include <QStyle>
 #include <QUrl>
 
+#include "main_widget.h"
+#include "main_window.h"
 #include "sidebar.h"
 #include "theme_manager.h"
 
-MainWidget::MainWidget(QWidget* parent) : QMainWindow(parent) {
-  window_title_ = "Xenia";  // move to qwinwidget maybe?
+namespace xe {
+namespace app {
 
-  QIcon app_icon(":/res/icon.ico");
-  setWindowIcon(app_icon);
-
-  Theme theme = ThemeManager::SharedManager().theme();
-
-  QPalette Pal(palette());
-  Pal.setColor(QPalette::Background, theme["background"]);
-  setAutoFillBackground(true);
-  setPalette(Pal);
-
-  QToolBar* menu_toolbar = new QToolBar();
-  menu_toolbar->setMovable(false);
-  menu_toolbar->setFloatable(false);
-  menu_toolbar->setStyleSheet("background-color: none; border: none;");
-
-  QMenuBar* menubar = new QMenuBar();
-  menubar->setStyleSheet(QString("color:%1;").arg(theme["text"].name()));
-  QMenu* file_menu = new QMenu("File");
-  menubar->addMenu(file_menu);
-  QMenu* cpu_menu = new QMenu("CPU");
-  menubar->addMenu(cpu_menu);
-  QMenu* gpu_menu = new QMenu("GPU");
-  menubar->addMenu(gpu_menu);
-  QMenu* window_menu = new QMenu("Window");
-  menubar->addMenu(window_menu);
-  QMenu* help_menu = new QMenu("Help");
-  menubar->addMenu(help_menu);
-
-  file_menu->addAction("Save");
-  file_menu->addAction("Exit");
-
-  menu_toolbar->layout()->setMenuBar(menubar);
-  addToolBar(menu_toolbar);
-
-  QWidget* central_widget = new QWidget();
-  this->setCentralWidget(central_widget);
+MainWidget::MainWidget(QWidget* parent)
+    : Themeable<QWidget>("MainWidget", parent) {
+  window_ = static_cast<MainWindow*>(parent);
 
   QHBoxLayout* layout = new QHBoxLayout();
   layout->setContentsMargins(0, 0, 0, 0);
-  this->centralWidget()->setLayout(layout);
+  setLayout(layout);
 
   Sidebar* sidebar = new Sidebar();
   layout->addWidget(sidebar, 0, Qt::AlignLeft);
 
   QWidget* test_content = new QWidget();
+  test_content->setObjectName("test");
   test_content->setStyleSheet("background: rgb(40,40,40)");
   layout->addWidget(test_content, 1);
 }
 
-void MainWidget::paintEvent(QPaintEvent* event) {
-  //  QPainter painter(this);
-  //  QImage backgroundImage(QStringLiteral(":/res/background.png"));
-  //  painter.drawImage(contentsRect(), backgroundImage);
+void MainWidget::keyPressEvent(QKeyEvent* e) {
+  if (e->key() == Qt::Key_Alt) {
+    if (window_) {
+      window_->menuBar()->show();
+    }
+  }
 }
+
+void MainWidget::keyReleaseEvent(QKeyEvent* e) {
+  if (e->key() == Qt::Key_Alt) {
+    if (window_) {
+      window_->menuBar()->hide();
+    }
+  }
+}
+
+}  // namespace app
+}  // namespace xe

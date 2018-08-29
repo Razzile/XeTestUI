@@ -1,16 +1,28 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #include "sidebar.h"
 #include <IconsIonicons.h>
 #include <QFont>
 #include <QHBoxLayout>
 #include <QLabel>
 
-Sidebar::Sidebar(int width, QWidget *parent) : QWidget(parent), width_(width) {
+namespace xe {
+namespace app {
+
+Sidebar::Sidebar(int width, QWidget *parent)
+    : Themeable<QWidget>("Sidebar", parent), width_(width) {
   layout_ = new QVBoxLayout();
   layout_->setSpacing(0);
   layout_->setMargin(0);
   setLayout(layout_);
 
-  // setStyleSheet("background-color: black");
+  // setStyleSheet("QWidget#Sidebar {background-color: red;}");
 
   setMinimumWidth(width_);
   setMaximumWidth(width_);
@@ -45,3 +57,6 @@ Sidebar::Sidebar(int width, QWidget *parent) : QWidget(parent), width_(width) {
   help_button->setStyleSheet("color: white");
   layout_->addWidget(help_button, 0, Qt::AlignCenter);
 }
+
+}  // namespace app
+}  // namespace xe

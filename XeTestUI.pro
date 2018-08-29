@@ -12,13 +12,9 @@ TARGET = XeTestUI
 TEMPLATE = app
 CONFIG += app_bundle
 
-SOURCES += $$files(src/xenia/app/*.cc, false) \
-    src/xenia/app/sidebar.cc \
-    src/xenia/app/xewidget.cc
+SOURCES += $$files(src/xenia/app/*.cc, false)
 
-HEADERS  += $$files(src/xenia/app/*.h, false) \
-    src/xenia/app/sidebar.h \
-    src/xenia/app/xewidget.h
+HEADERS += $$files(src/xenia/app/*.h, false)
 
 INCLUDEPATH += third_party/IconFontCppHeaders
 

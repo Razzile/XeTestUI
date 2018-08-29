@@ -1,30 +1,36 @@
+/**
+ ******************************************************************************
+ * Xenia : Xbox 360 Emulator Research Project                                 *
+ ******************************************************************************
+ * Copyright 2018 Ben Vanik. All rights reserved.                             *
+ * Released under the BSD license - see LICENSE in the root for more details. *
+ ******************************************************************************
+ */
 #ifndef THEMEMANAGER_H
 #define THEMEMANAGER_H
 
 #include <QColor>
 #include <QString>
-#include <vector>
+#include <QVector>
+#include "theme.h"
 
-class Theme {
-  using ThemeColor = std::pair<QString, QColor>;
+namespace xe {
+namespace app {
 
- public:
-  QColor operator[](const QString& str) const;
-  QColor& operator[](const QString& str);
-
- private:
-  std::vector<ThemeColor> colors_;
-};
 class ThemeManager {
  public:
   static ThemeManager& SharedManager();
-
-  Theme theme() const;
+  const Theme& current_theme() const { return themes_.front(); }
+  const QVector<Theme>& themes() const { return themes_; }
 
  private:
+  void LoadThemes();
+  Theme LoadTheme(const QString& name);
   ThemeManager();
 
-  Theme theme_;
+  QVector<Theme> themes_;
 };
 
+}  // namespace app
+}  // namespace xe
 #endif  // THEMEMANAGER_H
