@@ -25,13 +25,14 @@ template <typename T>
 class Themeable : public T {
  public:
   Themeable(QString name = "", QWidget *parent = nullptr) : T(parent) {
-    static_assert(std::is_base_of<QObject, T>::value,
-                  "T not derived from QObject");
+    static_assert(std::is_base_of<QWidget, T>::value,
+                  "T not derived from QWidget");
     if (name == QString::null) {
       name = typeid(T).name();
     }
     ApplyTheme(name);
   }
+
   void ApplyTheme(const QString &name) {
     if (name != QString::null) {
       setObjectName(name);
