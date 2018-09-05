@@ -9,7 +9,6 @@
         <file>res/close.svg</file>
         <file>res/maximize.svg</file>
         <file>res/minimize.svg</file>
-        <file>window.css</file>
         <file>res/16x16.png</file>
         <file>res/32x32.png</file>
         <file>res/36x36.png</file>
@@ -20,5 +19,6 @@
         <file>res/512x512.png</file>
         <file>res/icon.ico</file>
         <file>res/ionicons.ttf</file>
+        <file>res/base.css</file>
     </qresource>
 </RCC>

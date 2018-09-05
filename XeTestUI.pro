@@ -35,5 +35,4 @@ mac {
 RESOURCES += \
     window.qrc
 
-DISTFILES += \
-    window.css
+DISTFILES +=

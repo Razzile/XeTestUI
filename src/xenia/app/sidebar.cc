@@ -15,8 +15,7 @@
 namespace xe {
 namespace app {
 
-Sidebar::Sidebar(int width, QWidget *parent)
-    : Themeable<QWidget>("Sidebar", parent), width_(width) {
+Sidebar::Sidebar(QWidget *parent) : Themeable<QWidget>("Sidebar", parent) {
   layout_ = new QVBoxLayout();
   layout_->setSpacing(0);
   layout_->setMargin(0);
@@ -24,8 +23,8 @@ Sidebar::Sidebar(int width, QWidget *parent)
 
   // setStyleSheet("QWidget#Sidebar {background-color: red;}");
 
-  setMinimumWidth(width_);
-  setMaximumWidth(width_);
+  //  setMinimumWidth(width_);
+  //  setMaximumWidth(width_);
 
   QFont icon_font("Ionicons", 32);
 

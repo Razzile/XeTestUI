@@ -25,6 +25,19 @@ ThemeManager &ThemeManager::SharedManager() {
   return *manager;
 }
 
+const QString &ThemeManager::base_style() const {
+  QFile file(":/res/base.css");
+  file.open(QFile::ReadOnly | QFile::Text);
+
+  static QString *style = nullptr;
+  if (!style) {
+    style = new QString(file.readAll());
+    style->remove(QRegExp("[\\n\\t\\r]"));
+  }
+
+  return *style;
+}
+
 void ThemeManager::LoadThemes() {
   QString theme_dir = QCoreApplication::applicationDirPath() + "/themes";
   QDirIterator iter(theme_dir, QDir::Dirs | QDir::NoDotAndDotDot);

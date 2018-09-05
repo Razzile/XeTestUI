@@ -18,15 +18,12 @@
 namespace xe {
 namespace app {
 
-const static int SIDEBAR_DEFAULT_WIDTH = 80;
-
 class Sidebar : public Themeable<QWidget> {
  public:
-  Sidebar(int width = SIDEBAR_DEFAULT_WIDTH, QWidget *parent = nullptr);
+  Sidebar(QWidget *parent = nullptr);
 
  private:
   QVBoxLayout *layout_;
-  int width_;
 };
 
 }  // namespace app

@@ -38,11 +38,14 @@ class Themeable : public T {
       setObjectName(name);
     }
 
-    Theme theme = ThemeManager::SharedManager().current_theme();
+    ThemeManager &manager = ThemeManager::SharedManager();
+    Theme theme = manager.current_theme();
+
     QString style = theme.StylesheetForComponent(name);
+    QString base_style = manager.base_style();
 
     if (style != QString::null) {
-      setStyleSheet(style);
+      setStyleSheet(base_style + style);
     }
   }
 

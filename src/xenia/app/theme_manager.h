@@ -22,6 +22,7 @@ class ThemeManager {
   static ThemeManager& SharedManager();
   const Theme& current_theme() const { return themes_.front(); }
   const QVector<Theme>& themes() const { return themes_; }
+  const QString& base_style() const;
 
  private:
   void LoadThemes();
