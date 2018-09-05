@@ -1,0 +1,10 @@
+QToolBar {
+    background-color: none;
+    border: none;
+}
+
+QMenuBar {
+    color: $primary;
+    background: $background;
+    border: none;
+}
